@@ -1,0 +1,9 @@
+{
+	"name": "heroku_hello_world",
+	"version": "0.0.1",
+	"dependencies": {
+		"socket.io":"0.8.4",
+		"express": "2.5.8",
+		"formidable":"1.0.11"
+		}
+}

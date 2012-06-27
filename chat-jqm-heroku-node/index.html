@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>chat</title>
+<link type="text/css" rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0-rc.1/jquery.mobile-1.1.0-rc.1.min.css"/>
+<script src="http://code.jquery.com/jquery-1.7.1.min.js"/></script>
+<script src="http://code.jquery.com/mobile/1.1.0-rc.1/jquery.mobile-1.1.0-rc.1.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+
+<script type="text/javascript">
+
+			function getCurrentDate(){
+				var currentTime = new Date();
+				var hours = currentTime.getHours();
+				var mins = currentTime.getMinutes();
+				var secs = currentTime.getSeconds();	
+				return(hours + ':'+ mins + ':' + secs);
+			}
+			
+			function getDisplayMessage(){
+					var message = $('#messageText').val();
+					var userName = $('#usernameText').val();
+					return('<em>'+userName + ' (' + getCurrentDate() +')</em>: ' + message);
+			}
+
+            $(document).ready(function() {
+
+			    var socket = io.connect('http://warm-samurai-5416.herokuapp.com/');
+				
+                socket.on('connect', function() {
+                    $('#messages').append('<li>Connected to the server.</li>');
+					
+                });
+
+                socket.on('message', function(message) {
+					
+                    $('#messages').append('<li>' + message + '</li>');
+					$('#messages').listview("refresh");
+                });
+
+                socket.on('disconnect', function() {
+                    $('#messages').append('<li>Disconnected from the server.</li>');
+					
+                });
+
+                $('#sendButton').bind('click', function() {
+                    
+					socket.send(getDisplayMessage());
+					 $('#messages').append('<li class="mySelf">' + getDisplayMessage() + '</li>');
+					 $('#messages').listview("refresh");
+                    $('#messageText').val('');
+                });
+            });
+        </script>
+        
+        <style>
+			.mySelf{
+				color:#09C;
+			}
+			
+			.listDiv{
+				margin-top:40px;
+				margin-left:10px;
+				margin-right:10px;	
+			}
+		</style>
+</head>
+
+<body>
+
+<div data-role="page" id="loginPage">
+
+	<div data-role="header" data-position="fixed">
+		<h1>Welcome</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+		<div id="formLogin">
+        <p>
+                <label for="usertext">Please enter your username:</label>
+                <input type="text" id="usernameText"/>
+            </p>
+            
+            <p>
+               <a href="#chatPage" data-role="button">Submit</a>
+            </p>	
+        </div>
+            	
+	</div>
+
+</div>
+<div data-role="page" id="chatPage">
+
+	<div data-role="header" data-position="fixed">
+		<h1>Let's chat</h1>
+	</div>
+
+	<div data-role="content">	
+	
+              <div>  
+              <label for="messageText">Your message</label>
+                <input type="text" id="messageText"/>
+                <button id="sendButton" >Send</button>  
+                </div>
+                <div class="listDiv">
+            	<ul id="messages" data-role="listview">
+                
+            </ul>
+            </div>
+           	
+	</div>
+
+</div>
+       
+</body>
+</html>
