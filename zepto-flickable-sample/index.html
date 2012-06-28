@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /
+<meta name="viewport" content="width=640">
+<title>Zepto cards</title>
+
+<link href='http://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Pontano+Sans' rel='stylesheet' type='text/css'>
+<script src="zepto.min.js"></script>
+<script src="zepto.flickable.min.js"></script>
+<script type="text/javascript">
+	
+		$(document).ready(function() 
+		{
+			$('#demo1').flickable({segments:3});
+			
+			$('.front, .back').tap(function() {
+				var el = $(this).parent();
+				el.toggleClass('flipped')
+			});	
+		});
+	
+</script>
+ 
+    <link href='ribbon.css' rel='stylesheet' type='text/css'>
+    <link href='style.css' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+<div id="demo1-wrapper">
+	<div id="demo1">
+			
+				<!-- Card 1 -->
+				<div class="card" id="card1">
+					<div class="front">
+                    	
+                        <img class="photoSolo" src="pics/mchaize.jpg" width="280" height="280	"/>		
+                         <div class="ribbon-wrapper-green"><div class="ribbon-green">FRANCE</div></div>
+
+                        <div class="nameDisplay">MICHAEL <br/><span class="firstName">CHAIZE</span></div>
+                        <div class="flipIcon">
+                        	<img src="pics/tapFlip.png" width="54" height="54"/>
+                        </div>
+                    </div>
+                    	
+					<div class="back">
+                    	 
+                        <div class="bio">
+                        	
+                            MICHAEL CHAIZE
+                            <div class="descBio">
+                        	Michaël Chaize is a Developer Evangelist at Adobe where he focuses on Rich Internet Application and Mobile applications. Based in Paris, he works with large accounts that need to understand the benefits of rich user interfaces, leverage the existing back-ends to add a rich presentation layer and measure the impact on the existing IT teams. He’s the editor in chief of Appliness.
+                       	  </div>
+                          <div class="twitterBtn">
+                          	<img src="wishTag.png" width="130" height="34"/>
+                          </div>
+                          <div class="wishTag">
+                          	&lt;cheese/&gt;
+                          </div>
+                        </div>
+                    </div>
+				</div>
+				
+				
+				<!-- Card 2 -->
+				<div class="card" id="card2">
+					<div class="front">
+                    	
+                        <img class="photoSolo" src="pics/christophe.jpg" width="280" height="280	"/>		
+                         <div class="ribbon-wrapper-green"><div class="ribbon-green">BELGIUM</div></div>
+
+                        <div class="nameDisplay">CHRISTOPHE <br/><span class="firstName">COENRAETS</span></div>
+                        
+                    </div>
+                    	
+					<div class="back">
+                    	 
+                        <div class="bio">
+                        	
+                            CHRISTOPHE COENRAETS
+                            <div class="descBio">
+                        	Christophe Coenraets is a Technical Evangelist for Adobe where he focuses on Mobile and Rich Internet Applications for the Enterprise. He has been working on Flex since the early days of the product in 2003. In his previous role at Macromedia, Christophe worked on JRun, the company’s J2EE application server.
+                       	  </div>
+                          <div class="twitterBtn">
+                          	<img src="wishTag.png" width="130" height="34"/>
+                          </div>
+                          <div class="wishTag">
+                          	&lt;chimay/&gt;
+                          </div>
+                        </div>
+                    </div>
+				</div>
+                
+                <!-- Card 3 -->
+                <div class="card" id="card3">
+					<div class="front">
+                    	
+                        <img class="photoSolo" src="pics/piotr.jpg" width="280" height="280	"/>		
+                         <div class="ribbon-wrapper-green"><div class="ribbon-green">POLAND</div></div>
+
+                        <div class="nameDisplay">PIOTR <br/><span class="firstName">WALCZYSZYN</span></div>
+                        
+                    </div>
+                    	
+					<div class="back">
+                    	 
+                        <div class="bio">
+                        	
+                            PIOTR WALCZYSZYN
+                            <div class="descBio">
+                        	I am a Platform Evangelist for Adobe Systems. This is a great job that keeps me constantly up to date with latest trends in web technologies field. With the current momentum of RIA’s it can be really exciting.It was also my first but not last close contact and participation in Open Source community. Actually I continue this today in other projects and also as part of my job at Adobe evangelizing Flex and other related technologies.
+                       	  </div>
+                          <div class="twitterBtn">
+                          	<img src="wishTag.png" width="130" height="34"/>
+                          </div>
+                          <div class="wishTag">
+                          	&lt;vodka/&gt;
+                          </div>
+                        </div>
+                    </div>
+				</div>
+    </div>
+</div>
+
+</body>
+</html>

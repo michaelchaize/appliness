@@ -1,0 +1,56 @@
+@charset "UTF-8";
+/* CSS Document */
+
+	.bodyMain{
+		background:#333;
+		
+	}
+	#help{
+		width:464px;	
+		font-family: 'Wire One', sans-serif;
+		font-size:35px;
+		color:#FFF;
+		text-align:center;	
+		margin:0;
+	}
+	#app-name{
+		width:464px;	
+		font-family: 'Wire One', sans-serif;
+		font-size:35px;
+		color:#FF0;
+		text-align:center;	
+	}
+	#menuWrapper {
+		width: 464px;
+		height: 130px;
+		overflow: hidden;
+		background: #DDDDDD;
+		background-image:url(menuiOS/iosBackground.png);
+
+		padding:0;
+	}
+	
+	#menu {
+		width: 938px;
+		height: 150px;
+		-webkit-perspective: 1000;
+	}
+		
+	.icons {
+		
+		color: #fff;
+		float: left;
+		height: 150px;
+		
+		
+		position: relative;
+		padding: 0;
+		text-align: center;
+		width: 464px;
+	}
+	
+	
+	
+	
+	
+	

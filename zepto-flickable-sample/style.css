@@ -1,0 +1,153 @@
+@charset "UTF-8";
+/* CSS Document */
+
+
+	#demo1-wrapper {
+	
+		width: 320px;
+		height: 510px;
+		overflow: hidden;
+		background: #DDDDDD;
+	
+	}
+	
+	#demo1 {
+		height: 460px;
+		width: 960px;
+		-webkit-perspective: 1000;
+	}
+		
+	.card, .front, .back {
+		border-radius: 10px;
+		color: #fff;
+		float: left;
+		height: 440px;
+		
+		margin: 10px;
+		position: relative;
+		padding: 0;
+		text-align: center;
+		width: 300px;
+	}
+	
+	.front, .back {
+		background: #fff;
+		position: absolute;
+		top: 0;
+		left: 0;
+		margin: 0;
+		-webkit-backface-visibility: hidden;
+		
+	}
+	
+	
+	
+	.back {
+		color: #fff;
+		-webkit-transform: rotateY(180deg) translate3d(0,0,0);
+		background: url(pics/background3.png);
+		background-size:232px 232px;
+	}
+	
+	.card {
+		-webkit-transform-style: preserve-3d;
+		-webkit-animation-name: default;
+		-webkit-animation-duration: 0.5s;
+		-webkit-animation-timing-function: ease-in-out;
+		-webkit-animation-iteration-count: 1;
+		-webkit-animation-fill-mode: forwards;
+	}
+	
+	.card.flipped {
+		-webkit-animation-name: cardflipped;
+	}
+	
+
+	
+	
+	.photoSolo{
+		margin-top:10px;	
+	}
+	
+	.flipIcon{
+		position:absolute;
+		padding-left:240px;
+		padding-top:15px;	
+		-webkit-backface-visibility:hidden;
+	}
+	
+	
+	
+	.nameDisplay{
+		margin-top: 5px;
+		font-family: 'Righteous', cursive;
+		font-size: 40px;
+		color: #333;
+		height: ;
+		line-height: 35px;
+		text-align: left;
+		margin-left: 10px;
+	}
+	
+	.firstName{
+		font-size:30px;	
+	}
+	
+	
+	
+	.bio{
+	font-family: 'Righteous', cursive;
+	font-size: 30px;
+	color: #FFF;
+	text-align: left;
+	margin-top: 40px;
+	margin-left: 15px;
+	margin-right:15px;
+	text-shadow: rgba(33,33,33,0.8) 0px 2px 0px;
+	vertical-align: super;
+	}
+	
+	.descBio{
+	font-family: 'Pontano Sans', sans-serif;
+	font-size: 14px;
+	color: #FFFFFF;
+	text-shadow: none;
+	
+	}
+	
+	
+	
+	.twitterBtn{
+		position:absolute;
+		padding-bottom:10px;
+		padding-top:30px;	
+	}
+	
+	.wishTag{
+		font-family: 'Pontano Sans', sans-serif;
+		font-size:16px;
+		position:absolute;
+		padding-top:33px;
+		padding-left:35px;
+		text-shadow: none;
+	}
+	
+	.navigationBar{
+		text-align:center;
+		width:100%;
+	}
+	
+	@-webkit-keyframes default { 
+		from 	{ -webkit-transform: rotateY(180deg) translate3d(0,0,0); }
+		to 		{ -webkit-transform: rotateY(0deg) translate3d(0,0,0); }
+	}
+
+	@-webkit-keyframes cardflipped { 
+		from 	{ -webkit-transform: rotateY(0deg) translate3d(0,0,0); }
+		to 		{ -webkit-transform: rotateY(180deg) translate3d(0,0,0); }
+	}
+
+	
+	
+	
+	

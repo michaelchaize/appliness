@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /
+<meta name="viewport" content="width=640">
+<title>Zepto cards</title>
+
+<link href='http://fonts.googleapis.com/css?family=Wire+One' rel='stylesheet' type='text/css'>
+<script src="zepto.min.js"></script>
+<script src="zepto.flickable.min.js"></script>
+<script type="text/javascript">
+	
+		$(document).ready(function() 
+		{
+			$('#menu').flickable({segments:2});
+			
+			$('#menu img').tap(function(){ 
+				//alert('You just tapped "'+$(this).attr('name')+'"'); 
+				$('#app-name').text('You just tapped "'+$(this).attr('name')+'"');
+			});
+		});
+	
+</script>
+    <link href='styleBasic.css' rel='stylesheet' type='text/css'>
+</head>
+
+<body class="bodyMain">
+<div id="menuWrapper">
+	<div id="menu">
+			
+				
+				<div class="icons" id="icons1">
+					<img src="menuiOS/icon1.png" name="dictionnary" class="imgIcon"/>
+                    <img src="menuiOS/icon2.png" name="facebook" class="imgIcon"/>
+                    <img src="menuiOS/icon3.png" name="maps" class="imgIcon"/>
+				</div>
+				
+				
+				
+				<div class="icons" id="icons2">
+					<img src="menuiOS/icon4.png" name="photoshop" class="imgIcon"/>
+                    <img src="menuiOS/icon5.png" name="mouse" class="imgIcon"/>
+                    <img src="menuiOS/icon6.png" name="settings" class="imgIcon"/>
+				</div>
+
+    </div>
+</div>
+<div id="help">
+	
+    	Swipe  left and swipe right to test this iOS-like menu. <br/>Tap an icon to get the name of the app.
+    	
+</div>
+<div id="app-name">
+	
+    	
+    	
+</div>
+
+</body>
+</html>
