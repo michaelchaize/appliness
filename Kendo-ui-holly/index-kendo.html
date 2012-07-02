@@ -1,0 +1,221 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+    <meta charset="utf-8">
+ 
+ 
+    <script type="text/javascript" charset="utf-8" src="cordova-1.7.0.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/kendo.mobile.min.js"></script>
+    <script src="js/console.js"></script>
+    <link href="styles/kendo.common.min.css" rel="stylesheet" />
+    <link href="styles/kendo.mobile.all.min.css" rel="stylesheet" />
+ 
+    <script type="text/javascript">
+        function onBodyLoad()
+        {
+            document.addEventListener("deviceready", onDeviceReady, false);
+            // Use the following for testing in the browser
+            getData(onResult);
+   }
+ 
+        /* When this function is called, Cordova has been initialized and is ready to roll */
+        /* If you are supporting your own protocol, the var invokeString will contain any arguments to the app launch.
+         see http://iphonedevelopertips.com/cocoa/launching-your-own-application-via-a-custom-url-scheme.html
+         for more details -jm */
+        function onDeviceReady() {
+            getData(onResult);
+        }
+ 
+        function getData(callback) {
+            var template =  kendo.template($("#customListViewTemplate").html());
+            var dataSource = new kendo.data.DataSource({
+                transport: {
+                    read: {
+                        url: 'http://local.yahooapis.com/LocalSearchService/V3/localSearch?appid=YahooDemo&query='+search.value+'&zip='+zip.value+'&output=json&results=15',
+                        dataType: "jsonp" // JSONP (JSON with padding) is required for cross-domain AJAX
+                    }
+                },
+                schema: {
+                    data: "ResultSet.Result"
+                },
+                error: function(e) {
+                    console.log("Error " + e);
+                },
+                change: function() {
+                    $("#resultListView").html(kendo.render(template, this.view()));
+                }
+            });
+            dataSource.sort = ({field: "Distance", dir: "asc"});
+            dataSource.read();
+            $("#resultListView").kendoMobileListView({dataSource:dataSource,template: $("#customListViewTemplate").html()});
+        }
+ 
+        function onResult(resultData) {
+            console.log("Results " + resultData);
+            $("#resultListView").kendoMobileListView({dataSource: kendo.data.DataSource.create({data:resultData,sort: { field: "Distance", dir: "asc" }}),
+                template: $("#customListViewTemplate").html()});
+        }
+    </script>
+</head>
+ 
+<body onload="onBodyLoad()">
+<script type="text/x-kendo-template" id="customListViewTemplate">
+    <h4>${Title}</h4>
+    <p>${Address}</p>
+    <h4 id="distance">${Distance} miles</h4>
+    <a data-role="button" class="details-link">Visit Website</a>
+</script>
+ 
+<div id="resultsView" data-role="view" data-title="Biz Finder" data-layout="app">
+    <div class="form">
+        <div id="leftcol"></div>
+            <div id="centercol">
+                <label id="lblZip" for="zip">Zip</label>
+                <input id="zip" type="search" value="90210" maxlength="5" size="5" onchange="getData(onResult)"/>
+                <label for="search">Search</label>
+                <input id="search" size="10" maxlength="10" type="search" value="spa" onchange="getData(onResult)"/>
+            </div>
+        <div id="rightcol"></div>
+    </div>
+    <ul id="resultListView"/>
+</div>
+ 
+<div id="settings" data-role="view" data-title="Settings" data-layout="app">
+    <h2>This is the Settings View...</h2>
+</div>
+ 
+<div id="about" data-role="view" data-title="About" data-layout="app">
+    <h2>This is the About View...</h2>
+</div>
+ 
+<!-- define multi-use layout for header/footer -->
+<div data-role="layout" data-id="app">
+    <header data-role="header">
+        <div data-role="navbar">
+            <span id="ttl" data-role="view-title"></span>
+            <a data-align="right"  data-role="button" data-icon="settings" href="#settings"></a>
+            <a data-align="left" data-role="backbutton" href="#index">Back</a>
+        </div>
+    </header>
+    <footer data-role="footer">
+        <div data-role="tabstrip">
+            <a href="#resultsView" data-icon="search">Search</a>
+            <a href="#about" data-icon="about">About</a>
+        </div>
+    </footer>
+</div>
+ 
+<style scoped>
+    #customListViewTemplate {
+        margin:0;
+        padding-right: 5px;
+    }
+ 
+    #leftcol {
+        position:relative;
+        top:-10px;
+        left:-10px;
+        float:left;
+        width:2%;
+        margin:0 0 -10px 0;
+        padding:10px;
+        z-index:100;
+    }
+ 
+    #rightcol {
+        position:relative;
+        top:-10px;
+        right:-10px;
+        float:right;
+        voice-family: "\"}\"";
+        voice-family:inherit;
+        width:5%;
+        margin:0 0 -10px 0;
+        padding:10px;
+        z-index:99;
+    }
+     
+    #settings h2, #about h2 {
+        margin: 10px;
+        font-family: Tahoma;
+    }
+ 
+    #centercol {
+        position:relative;
+        padding-left: 30%;
+    }
+    .form h3 {
+        padding-left: 30%;
+    }
+    
+    .form {
+        width: 100%;
+        padding-top: 10px;
+        padding-bottom: 15px;
+        padding-left: 12px;
+ 
+        background-size: 100% auto;
+        background-image: -moz-linear-gradient(center top , rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.45) 6%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.15) 50%, rgba(100, 100, 100, 0));
+        background-image: -webkit-gradient(linear, 50% 0, 50% 100%, color-stop(0, rgba(255, 255, 255, 0.5)), color-stop(0.06, rgba(255, 255, 255, 0.45)), color-stop(0.5, rgba(255, 255, 255, 0.2)), color-stop(0.5, rgba(255, 255, 255, 0.15)), color-stop(1, rgba(100, 100, 100, 0)));
+        background-color: #ef652a;
+        color: #fff;
+    }
+     
+    h3, h4, p {
+        margin:0;
+        padding:0;
+        font-family: fantasy;
+    }
+ 
+    label {
+        font-size: 18px;
+    }
+    .km-ios p {
+        color: #545454;
+        font-size: 18px;
+    }
+    .km-android p {
+        color: #FFFFFF;
+        font-size: 16px;
+    }
+    .km-android #distance {
+        color: #CCCCCC;
+        font-size: 16px;
+    }
+    .km-ios #distance {
+        color: #808080;
+        font-size: 16px;
+    }
+    #distance {
+        color: #808080;
+        font-size: 16px;
+    }
+    #content {
+        margin: 0px;
+        padding: 0px;
+    }
+    #header {
+        background-color: pink;
+    }
+    #resultListView {
+        background-size: 100%;
+        background-image: -moz-linear-gradient(center top , rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.45) 6%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.15) 50%, rgba(100, 100, 100, 0));
+        background-image: -webkit-gradient(linear, 50% 0, 50% 100%, color-stop(0, rgba(255, 255, 255, 0.5)), color-stop(0.06, rgba(255, 255, 255, 0.45)), color-stop(0.5, rgba(255, 255, 255, 0.2)), color-stop(0.5, rgba(255, 255, 255, 0.15)), color-stop(1, rgba(100, 100, 100, 0)));
+        margin: -10px;
+        padding: 5px;
+    }
+    .details-link {
+        margin-top: -1em;
+        position: absolute;
+        right: 0.6em;
+        top: 50%;
+    }
+    </style>
+    <script>
+        window.kendoMobileApplication = new kendo.mobile.Application(document.body);
+    </script>
+</body>
+</html>
