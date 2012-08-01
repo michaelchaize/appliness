@@ -1,3 +1,244 @@
 
-<!-- saved from url=(0056)http://www.raymondcamden.com/demos/2012/jul/2/test5.html -->
-<html><body><div class="webkit-line-gutter-backdrop"></div><table><tbody><tr><td class="webkit-line-number"></td><td class="webkit-line-content"><span class="webkit-html-doctype">&lt;!doctype html&gt;</span></td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content"><span class="webkit-html-tag">&lt;html&gt;</span></td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content"><span class="webkit-html-tag">&lt;head&gt;</span></td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content"><span class="webkit-html-tag">&lt;title&gt;</span><span class="webkit-html-tag">&lt;/title&gt;</span></td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content"><span class="webkit-html-tag">&lt;script <span class="webkit-html-attribute-name">type</span>="<span class="webkit-html-attribute-value">text/javascript</span>" <span class="webkit-html-attribute-name">src</span>="<a class="webkit-html-attribute-value webkit-html-resource-link" target="_blank" href="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js">http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js</a>"&gt;</span><span class="webkit-html-tag">&lt;/script&gt;</span></td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content"><span class="webkit-html-tag">&lt;script <span class="webkit-html-attribute-name">type</span>="<span class="webkit-html-attribute-value">text/javascript</span>" <span class="webkit-html-attribute-name">src</span>="<a class="webkit-html-attribute-value webkit-html-resource-link" target="_blank" href="http://www.raymondcamden.com/demos/2012/jul/2/support.js">support.js</a>"&gt;</span><span class="webkit-html-tag">&lt;/script&gt;</span></td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content"><span class="webkit-html-tag">&lt;script <span class="webkit-html-attribute-name">type</span>="<span class="webkit-html-attribute-value">text/javascript</span>" <span class="webkit-html-attribute-name">src</span>="<a class="webkit-html-attribute-value webkit-html-resource-link" target="_blank" href="http://www.raymondcamden.com/demos/2012/jul/2/handlebars.js">handlebars.js</a>"&gt;</span><span class="webkit-html-tag">&lt;/script&gt;</span></td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content"><span class="webkit-html-tag">&lt;script&gt;</span></td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">var template;</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">var streamDiv;</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">var html = "";</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">var hiding = false;</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">var hb;</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">var mouseOvered = false;</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content"></td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">$(document).ready(function() {</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content"></td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">	var source   = $("#itemTemplate").html();</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">		template = Handlebars.compile(source);</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content"></td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">	streamDiv = $("#stream");</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content"></td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">	//set up an interval to ask for new data</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">	hb = window.setInterval(checkData, 4000);</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content"></td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">	Handlebars.registerHelper('dateFormat', function(dt) {</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">		return (dt.getMonth()+1) + '/' + dt.getDate() + '/' + dt.getFullYear() + ' ' + (dt.getHours()+1) + ':'+dt.getMinutes();</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">	});</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content"></td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">	$("#stream").on("mouseover",".item", function() {</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">		console.log('hiding');</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">		hiding=true;</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">		mouseOvered=true;</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">		//console.log($(this).position().top);</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">	});</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content"></td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">	$("#stream").on("mouseout",".item", function() {</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">		console.log('UNhiding',html);</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">		hiding=false;</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">		mouseOvered=false;</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">		addToStream(html);</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">	});</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content"></td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">	$(window).on("scroll",function() {</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">		//Only care if not mouseOvered</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">		if(mouseOvered) return;</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">		var scroll = $(window).scrollTop();</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">		if(scroll &gt; 0) hiding = true;</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">		else {</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">			hiding = false;</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">			if(html != "") addToStream(html);</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">		}</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">	});</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content"></td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">});</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content"></td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">function checkData() {</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">	console.log("running checkData");</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">	//for now, create 0-3 fake items</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">	var newDataSize = Math.floor(Math.random()*3);</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">	if(newDataSize === 0) return;</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content"></td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">	var data = [];</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">	for(var i=0;i&lt;newDataSize;i++) {</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">		//create a simple news item: title, author, date</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">		var item = {};</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">		item.created = new Date();</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">		item.author = generateFakeName();</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">		item.title = generateFakeTitle();</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">		data.push(item);</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">	}</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">	console.log(data.length + ' added');</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content"></td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">	data.forEach(function(itm) {</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">		html += template(itm);</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">	});</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content"></td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">	if(!hiding) {</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">		addToStream(html);</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">	}</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">}</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content"></td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">function addToStream(addedHTML) {</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">	addedHTML = "&lt;div&gt;"+addedHTML+"&lt;/div&gt;";</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">	var domitem = $(addedHTML).hide();</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">	streamDiv.prepend(domitem);</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">	domitem.slideDown('slow');</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">	html="";	</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">}</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content"><span class="webkit-html-tag">&lt;/script&gt;</span></td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content"></td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content"><span class="webkit-html-tag">&lt;script <span class="webkit-html-attribute-name">id</span>="<span class="webkit-html-attribute-value">itemTemplate</span>" <span class="webkit-html-attribute-name">type</span>="<span class="webkit-html-attribute-value">text/x-handlebars-template</span>"&gt;</span></td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">&lt;div class="item"&gt;</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">&lt;h2&gt;{{title}}&lt;/h2&gt;</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">By: {{author}}&lt;br/&gt;</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">Posted: {{dateFormat created}}&lt;br/&gt;</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">&lt;/div&gt;</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content"><span class="webkit-html-tag">&lt;/script&gt;</span></td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content"></td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content"><span class="webkit-html-tag">&lt;style&gt;</span></td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">#stream {</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">	width: 400px;</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">}</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content"></td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">.item {</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">	border: solid black 1px;</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">	margin-bottom: 15px;</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">	background-color: #e0e0e0;</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">	padding: 5px;</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content">}</td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content"><span class="webkit-html-tag">&lt;/style&gt;</span></td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content"></td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content"><span class="webkit-html-tag">&lt;/head&gt;</span></td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content"></td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content"><span class="webkit-html-tag">&lt;body&gt;</span></td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content"></td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content"><span class="webkit-html-tag">&lt;h2&gt;</span>Stream<span class="webkit-html-tag">&lt;/h2&gt;</span></td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content"></td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content"><span class="webkit-html-tag">&lt;div <span class="webkit-html-attribute-name">id</span>="<span class="webkit-html-attribute-value">stream</span>"&gt;</span><span class="webkit-html-tag">&lt;/div&gt;</span></td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content"></td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content"><span class="webkit-html-tag">&lt;/body&gt;</span></td></tr><tr><td class="webkit-line-number"></td><td class="webkit-line-content"><span class="webkit-html-tag">&lt;/html&gt;</span></td></tr></tbody></table></body></html>
+<!doctype html>
+
+<html>
+
+<head>
+
+<title></title>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+<script type="text/javascript" src="support.js"></script>
+
+<script type="text/javascript" src="handlebars.js"></script>
+
+<script>
+
+var template;
+
+var streamDiv;
+
+var html = "";
+
+var hiding = false;
+
+var hb;
+
+var mouseOvered = false;
+
+
+
+$(document).ready(function() {
+
+
+
+	var source   = $("#itemTemplate").html();
+
+		template = Handlebars.compile(source);
+
+
+
+	streamDiv = $("#stream");
+
+
+
+	//set up an interval to ask for new data
+
+	hb = window.setInterval(checkData, 4000);
+
+
+
+	Handlebars.registerHelper('dateFormat', function(dt) {
+
+		return (dt.getMonth()+1) + '/' + dt.getDate() + '/' + dt.getFullYear() + ' ' + (dt.getHours()+1) + ':'+dt.getMinutes();
+
+	});
+
+
+
+	$("#stream").on("mouseover",".item", function() {
+
+		console.log('hiding');
+
+		hiding=true;
+
+		mouseOvered=true;
+
+		//console.log($(this).position().top);
+
+	});
+
+
+
+	$("#stream").on("mouseout",".item", function() {
+
+		console.log('UNhiding',html);
+
+		hiding=false;
+
+		mouseOvered=false;
+
+		addToStream(html);
+
+	});
+
+
+
+	$(window).on("scroll",function() {
+
+		//Only care if not mouseOvered
+
+		if(mouseOvered) return;
+
+		var scroll = $(window).scrollTop();
+
+		if(scroll > 0) hiding = true;
+
+		else {
+
+			hiding = false;
+
+			if(html != "") addToStream(html);
+
+		}
+
+	});
+
+
+
+});
+
+
+
+function checkData() {
+
+	console.log("running checkData");
+
+	//for now, create 0-3 fake items
+
+	var newDataSize = Math.floor(Math.random()*3);
+
+	if(newDataSize === 0) return;
+
+
+
+	var data = [];
+
+	for(var i=0;i<newDataSize;i++) {
+
+		//create a simple news item: title, author, date
+
+		var item = {};
+
+		item.created = new Date();
+
+		item.author = generateFakeName();
+
+		item.title = generateFakeTitle();
+
+		data.push(item);
+
+	}
+
+	console.log(data.length + ' added');
+
+
+
+	data.forEach(function(itm) {
+
+		html += template(itm);
+
+	});
+
+
+
+	if(!hiding) {
+
+		addToStream(html);
+
+	}
+
+}
+
+
+
+function addToStream(addedHTML) {
+
+	addedHTML = "<div>"+addedHTML+"</div>";
+
+	var domitem = $(addedHTML).hide();
+
+	streamDiv.prepend(domitem);
+
+	domitem.slideDown('slow');
+
+	html="";	
+
+}
+
+</script>
+
+
+
+<script id="itemTemplate" type="text/x-handlebars-template">
+
+<div class="item">
+
+<h2>{{title}}</h2>
+
+By: {{author}}<br/>
+
+Posted: {{dateFormat created}}<br/>
+
+</div>
+
+</script>
+
+
+
+<style>
+
+#stream {
+
+	width: 400px;
+
+}
+
+
+
+.item {
+
+	border: solid black 1px;
+
+	margin-bottom: 15px;
+
+	background-color: #e0e0e0;
+
+	padding: 5px;
+
+}
+
+</style>
+
+
+
+</head>
+
+
+
+<body>
+
+
+
+<h2>Stream</h2>
+
+
+
+<div id="stream"></div>
+
+
+
+</body>
+
+</html>
