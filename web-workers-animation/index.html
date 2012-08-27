@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Worker sample</title>
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+<!--Adobe Edge Runtime-->
+    <script type="text/javascript" charset="utf-8" src="workersAnim_edgePreload.js"></script>
+    <style>
+        .edgeLoad-EDGE-316521125 { display:none; }
+		
+		.resultsTable{
+			font-family: 'Lato', sans-serif;	
+			
+		}
+		
+		.row{
+			width:300px;	
+		}
+		
+		td {
+  			text-align: center;
+	}
+
+    </style>
+<!--Adobe Edge Runtime End-->
+	<script type="text/javascript">
+		function stupidLoop(){
+			var start = new Date().getTime();
+			$("#resultTotal").html('Calculating');
+			var sum = 0;
+				for (var i = 0; i < 3000; i++) {
+					for (var j = 0; j < 2000; j++) {
+						sum++;
+					}
+				}
+				$("#resultTotal").html('Result: ' + sum);
+				var end = new Date().getTime();
+				var time = end - start;
+				$("#timeTaken").html("Time: " + time + "ms");
+
+				
+		}
+		
+		var tempStartTime = "0";
+		
+		var worker = new Worker('workerStupid.js');
+		
+		function callWorker(){
+			tempStartTime = new Date().getTime();
+			$("#resultTotalWorker").html('Calculating');
+			worker.postMessage("");	
+		}
+		
+		worker.addEventListener('message', function (event) {
+    		var endWorker = new Date().getTime();
+			var timeWorker = endWorker - tempStartTime;
+			$("#timeTakenWorker").html("Time: " + timeWorker + "ms");
+			$("#resultTotalWorker").html('Result: ' + event.data);
+	}, false);
+    
+    </script>
+
+</head>
+<body style="margin:0;padding:0;">
+	<div id="Stage" class="EDGE-316521125">
+	</div>
+<div class="resultsTable">
+    <table width="300">
+    	<tr>
+        	<td width="150" bgcolor="#f59b56">DIRECT JS CALL</td>
+            <td width="150" bgcolor="#6db7a5">WITH WEB WORKER</td>
+        </tr>
+        <tr>
+        <td width="150" bgcolor="#f59b56">
+        	<a href="#" class="btn" onClick="stupidLoop()">Launch test</a>
+        </td>
+            <td width="150" bgcolor="#6db7a5">
+            <a href="#" class="btn" onClick="callWorker()">Launch test</a>
+            </td>
+        </tr>
+        <tr>
+        <td width="150" bgcolor="#f59b56">
+        <div id="resultTotal">
+    	(...)
+    	</div>
+        </td>
+            <td width="150" bgcolor="#6db7a5">
+            <div id="resultTotalWorker">
+    	(...)
+    	</div>
+        </td>
+        </tr>
+        <tr><td width="150" bgcolor="#f59b56">
+        <div id="timeTaken">
+    	(...)
+    	</div>
+        </td>
+            <td width="150" bgcolor="#6db7a5">
+            <div id="timeTakenWorker">
+    	(...)
+    	</div>
+        </td>
+        </tr>
+    </table>
+    </div>
+    
+</body>
+</html>
