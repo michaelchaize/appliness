@@ -1,0 +1,115 @@
+@charset "UTF-8";
+/* CSS Document */
+
+
+
+.homeLogo {
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:0;
+	margin-bottom:0px;
+	display:block;	
+}
+
+.list-main-item{
+	padding-right:15px;
+}
+.list-rate-icon{
+	padding-right:20px;
+}
+.homeBody{
+	text-align:center;
+	
+}
+.list-icon-left{
+	margin-top: 10px;
+}
+.OTHomeLogo{
+
+}
+.myList{
+	margin-top:40px;
+}
+
+.mainContentPanel{
+	background-image: url(../images/header-logo-back.png);
+	margin: 0px;	
+	padding:0px;	
+}
+
+.ui-mobile-viewport{
+	background-color:#ebe9dd !important;
+}
+
+.titleLabel{
+	font-family:"Book Antiqua";
+	font-size:18px;
+	color:#5b503c;
+	font-style:italic;
+}
+
+.titleDiv{
+	cursor:pointer;
+	text-align:center;
+	margin-bottom:40px;
+	margin-top:40px;
+}
+
+.titleBorderRight{
+	/*border-right:1px solid #FFF;*/
+}
+.titleBorderBottom{
+	/*border-bottom:1px solid #FFF;*/
+}
+
+.titleBorderTop{
+	border-top: 1px solid #FFF;
+}
+
+.ui-grid-a{
+}
+
+.ui-block-a{
+	
+	clear:left;
+	float:left;
+	
+}
+
+.blockSpace{
+	
+}
+.ui-block-b{
+}
+
+div {
+display: block;
+}
+
+.ui-page{
+	background-color:#ebe9dd;
+}
+
+.ui-mobile .ui-page-active {
+
+}
+
+.wineLine{
+	width:120px;
+	height:60px;
+
+}
+
+.labelForm{
+	font-family:"Book Antiqua";
+	font-size:18px;
+	color:#5b503c;
+}
+
+.radioBtn{
+	font-size:12px;
+}
+
+.rate-style-list{
+	font-size:18px !important;
+}

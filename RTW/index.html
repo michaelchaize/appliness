@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
+	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
+<link rel="stylesheet" type="text/css" href="./css/site.css">
+
+<script type="text/javascript" charset="utf-8" src="js/phonegap-1.3.0.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/databaseLogic.js"></script>
+<script type="text/javascript" charset="utf-8">
+
+    // Wait for PhoneGap to load
+    //
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    // PhoneGap is ready
+    //
+
+	$( document ).delegate("#catalogPage", "pageinit", function() {
+  		//alert('A page with an ID of "aboutPage" was just created by jQuery Mobile!');
+		console.log("getWine called");
+		getWine();
+		
+	});
+	
+	$( document ).delegate("#singleWinePage", "pageinit", function() {
+  		//alert('A page with an ID of "aboutPage" was just created by jQuery Mobile!');
+		console.log("getWinebyId called from main");
+		getWineId(sessionStorage.idw);
+		
+	});
+	
+    function onDeviceReady(){
+     console.log("device ready");
+    }
+
+    // alert dialog dismissed
+    function alertDismissed(){
+        
+    }
+
+    // Show a custom alert
+    //
+    function showAlert() {
+        navigator.notification.alert(
+            'You are the winner!',  // message
+            alertDismissed,         // callback
+            'Game Over',            // title
+            'Done'                  // buttonName
+        );
+    }
+
+</script>
+    
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1" /> 
+<title>WineMemo - Remember the wine</title>
+</head>
+
+<body class="ui-mobile-viewport">
+
+<div id="homePage" data-role="page"   class="homeBody ui-page ui-page-active">
+	<div id="header-home" data-role="header" data-position="inline">
+	<a href="index.html" data-icon="home"> Home</a>
+    <h1>Welcome to WineMemo</h1>
+    
+</div>
+    
+		<div id="OTHomeLogo" class="mainContentPanel">
+        <img src="images/header-logo.png" class="homeLogo">
+        </div>
+	
+    <div class="ui-grid-a">
+    	<div class="ui-block-a titleDiv  ">
+        	<a   href="add.html" data-transition="slide" id="Add">
+            	<img src="images/MenuItem-Add.png"/>
+            </a>
+            <div id="lblAdd" class="titleLabel">add</div>
+        </div>
+        <div class="ui-block-b titleDiv  ">
+        	<a   href="catalog.html" data-transition="slide" id="Add">
+            	<img src="images/MenuItem-catalog.png"/>
+            </a>
+            <div id="lblCatalog" class="titleLabel">catalog</div>
+        </div>
+        
+    </div>
+    <div class="ui-grid-a">
+    	<div class="ui-block-a titleDiv ">
+        	<center>
+            <div class="ui-grid-a wineLine ">
+            	<div class="ui-block-a">
+                	 <a  href="http://www.google.fr" id="Red">
+            			<img src="images/Glass-Red.png"/>
+           			 </a>
+                </div>
+                <div class="ui-block-b">
+                	 <a  href="http://www.google.fr" id="White">
+            			<img src="images/Glass-White.png"/>
+           			 </a>
+                </div>
+              </div>
+               <div class="ui-grid-a wineLine"> 
+                <div class="ui-block-a ">
+                	 <a   href="http://www.google.fr" id="Pink">
+            			<img src="images/Glass-Pink.png"/>
+           			 </a>
+                </div>
+                <div class="ui-block-b ">
+                	 <a   href="http://www.google.fr" id="Champagne">
+            			<img src="images/Glass-Champagne.png"/>
+           			 </a>
+                </div>
+            </div>
+            </center>
+            <div id="lblColor" class="titleLabel">by Color</div>
+        </div>
+        <div class="ui-block-b titleDiv  ">
+        	<a   href="#" onclick="showAlert(); return false;" id="Add">
+            	<img src="images/MenuItem-about.png"/>
+            </a>
+            <div id="lblAbout" class="titleLabel">about</div>
+        </div>
+        
+    </div>
+</div>
+
+</body>
+</html>
