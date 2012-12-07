@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://texturepacker.com-->
+<!-- $TexturePacker:SmartUpdate:200980c589a38a05f8312d25c7dc64e9$ -->
+<TextureAtlas imagePath="bobby-starling.png">
+    <SubTexture name="a1_00" x="596" y="288" width="196" height="280"/>
+    <SubTexture name="a1_01" x="398" y="570" width="196" height="280"/>
+    <SubTexture name="a1_02" x="398" y="288" width="196" height="280"/>
+    <SubTexture name="a1_03" x="200" y="570" width="196" height="280"/>
+    <SubTexture name="a1_04" x="200" y="570" width="196" height="280"/>
+    <SubTexture name="a1_05" x="200" y="570" width="196" height="280"/>
+    <SubTexture name="a1_06" x="596" y="570" width="196" height="270"/>
+    <SubTexture name="a1_07" x="794" y="560" width="196" height="270"/>
+    <SubTexture name="a1_08" x="2" y="2" width="196" height="290"/>
+    <SubTexture name="a1_09" x="2" y="584" width="196" height="288"/>
+    <SubTexture name="a1_10" x="2" y="294" width="196" height="288"/>
+    <SubTexture name="a1_11" x="200" y="288" width="196" height="280"/>
+    <SubTexture name="a1_12" x="794" y="288" width="196" height="270"/>
+    <SubTexture name="a1_13" x="200" y="2" width="222" height="284"/>
+    <SubTexture name="a1_14" x="424" y="2" width="220" height="284"/>
+    <SubTexture name="a1_15" x="646" y="2" width="218" height="284"/>
+    <SubTexture name="a1_16" x="646" y="2" width="218" height="284"/>
+    <SubTexture name="a1_17" x="646" y="2" width="218" height="284"/>
+    <SubTexture name="a1_18" x="646" y="2" width="218" height="284"/>
+</TextureAtlas>
