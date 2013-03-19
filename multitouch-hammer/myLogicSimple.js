@@ -1,7 +1,7 @@
 // JavaScript Document
 
 
-	var zIndexBackup = 10;
+	
 
    if(!Hammer.HAS_TOUCHEVENTS && !Hammer.HAS_POINTEREVENTS) {
             Hammer.plugins.showTouches();
@@ -32,15 +32,6 @@
 	
 	
 	function manageMultitouch(ev){
-		var el = ev.target.parentNode;
-		  
-		  if(el.className.search('polaroid') > -1){
-			  	
-				 el = ev.target.parentNode.parentNode;
-		  }
-		  
-		el.style.zIndex = zIndexBackup + 1;
-		zIndexBackup = zIndexBackup +1;
 		
 		switch(ev.type) {
             case 'touch':
